@@ -40,7 +40,8 @@ const SignUp: React.FC = () => {
                     <Form ref={formRef} onSubmit={(data) => {console.log(data)}} style={{width: '100%'}} >
                         <Input 
                             autoCapitalize='words' 
-                            name='name' icon= 'mail' 
+                            name='name' 
+                            icon= 'user' 
                             placeholder='Nome'
                             returnKeyType='next'
                             onSubmitEditing={() => {
