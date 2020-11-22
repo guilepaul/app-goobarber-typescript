@@ -1,5 +1,6 @@
 import React from 'react'
-import {Image} from 'react-native'
+import {Image, View,ScrollView, KeyboardAvoidingView, Platform} from 'react-native'
+import Icon from 'react-native-vector-icons/Feather'
 
 import Input from '../../components/Input'
 import Button from '../../components/Button'
@@ -10,16 +11,39 @@ import * as S from './styles'
 
 const SignIn: React.FC = () => {
     return (
-        <S.Container>
-            <Image source={logoImg} />
-            <S.Title>Faça seu logon</S.Title>
+        <>
+        <KeyboardAvoidingView 
+            style={{ flex: 1 }}
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            enabled 
+        >
+            <ScrollView
+                keyboardShouldPersistTaps='handled'
+                contentContainerStyle={{ flex: 1 }}
+            >
+                <S.Container>
+                    <Image source={logoImg} />
+                    <View>
+                        <S.Title>Faça seu logon</S.Title>
+                    </View>
 
-            <Input name='email' icon= 'mail' placeholder='E-mail'/>
+                    <Input name='email' icon= 'mail' placeholder='E-mail'/>
 
-            <Input name='password' icon= 'lock' placeholder= 'Senha'/>
+                    <Input name='password' icon= 'lock' placeholder= 'Senha'/>
 
-            <Button onPress={() => {console.log('deu')}}>Entrar</Button>
-        </S.Container>
+                    <Button onPress={() => {console.log('deu')}}>Entrar</Button>
+
+                    <S.ForgotPassword onPress={() => {}} >
+                        <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
+                    </S.ForgotPassword>
+                </S.Container>
+            </ScrollView>
+        </KeyboardAvoidingView>
+        <S.CreateAccountButton onPress={() => {}} >
+            <Icon name='log-in' size={20} color='#ff9000' />
+            <S.CreateAccountButtonText>Criar uma conta</S.CreateAccountButtonText>
+        </S.CreateAccountButton>
+        </>
     )
 }
 
